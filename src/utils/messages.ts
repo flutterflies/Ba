@@ -1,5 +1,4 @@
 import { Client, Message, PermissionResolvable } from 'discord.js'
-import { Commands } from '../commands'
 import { EmbedUtils } from './embeds'
 import { Emote } from '../models/emote'
 
@@ -37,7 +36,6 @@ const handleMention = async (message: Message, client: Client): Promise<void> =>
  * @param client The bot's client instance.
  */
 const handleReactions = async (message: Message, client: Client): Promise<void> => {
-  if (message.content.startsWith(Commands.COMMAND_PREFIX)) { return } // Ignore commands
   if ((client.user != null) && client.user.id === message.author.id) { return } // Ignore messages sent by the bot
 
   const emotes = await Emote.forToday()

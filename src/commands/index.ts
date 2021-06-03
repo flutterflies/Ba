@@ -1,18 +1,13 @@
+import { Command } from './command'
 import { EmotesCommand } from './emotes'
-
-/**
- * The prefix used for executing commands.
- */
-const COMMAND_PREFIX = '?ba '
 
 /**
  * A list of all commands.
  */
-const commandList = [
+const commandList: Command[] = [
   EmotesCommand
 ]
 
 export const Commands = {
-  COMMAND_PREFIX,
   commandList
 }

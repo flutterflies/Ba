@@ -1,16 +1,17 @@
-import { Command } from './utils/command'
+import { Command } from './command'
 import { Emote } from '../models/emote'
-import { Message } from 'discord.js'
+import { CommandInteraction } from 'discord.js'
 
 /**
  * Prints a list of all emotes which are active for today.
  */
 export const EmotesCommand: Command = {
-  name: 'emotes',
-  aliases: ['reacts', 'reactions'],
-  description: 'Gets a list of all the the emotes active for today.',
-  usage: '?ba emotes',
-  execute: async (message: Message): Promise<void> => {
+  data: {
+    name: 'emotes',
+    description: 'Prints a list of all currently active emotes.',
+    defaultPermission: true
+  },
+  execute: async (interaction: CommandInteraction): Promise<void> => {
     const emotes = await Emote.forToday()
 
     let returnMessage = 'Today\'s active emotes are:\n'
@@ -18,6 +19,6 @@ export const EmotesCommand: Command = {
       returnMessage += `• ${emote.formattedEmoji()} (\`${emote.name}\`)\n`
     })
 
-    await message.channel.send(returnMessage)
+    await interaction.reply(returnMessage)
   }
 }

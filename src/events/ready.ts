@@ -10,7 +10,7 @@ import { createConnection } from 'typeorm'
  *  - Establishing a database conntection.
  *  - Setting the bot's activity.
  */
-const ReadyEvent: Event = {
+export const ReadyEvent: Event = {
   eventName: 'ready',
   handle: async (client: Client) => {
     // Establish connection to the database.
@@ -26,5 +26,3 @@ const ReadyEvent: Event = {
     client.user?.setActivity('?ba help', { type: 'LISTENING' })
   }
 }
-
-export { ReadyEvent }
