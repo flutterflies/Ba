@@ -4,7 +4,7 @@
   "description": "reacts to discord messages with fun emojis",
   "main": "dist/src/index.js",
   "dependencies": {
-    "discord.js": "^12.5.3",
+    "discord.js": "discordjs/discord.js",
     "pg": "^8.4.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.29",
@@ -23,7 +23,7 @@
     "build": "tsc",
     "lint": "ts-standard",
     "lint:fix": "ts-standard --fix",
-    "seed": "tsc && node -r dotenv/config ./node_modules/typeorm-seeding/dist/cli.js",
+    "seed": "tsc && node -r dotenv/config ./node_modules/typeorm-seeding/dist/cli.js seed",
     "start": "tsc && node -r dotenv/config .",
     "typeorm": "tsc && node -r dotenv/config ./node_modules/typeorm/cli.js"
   },

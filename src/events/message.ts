@@ -1,4 +1,5 @@
 import { Client, Message } from 'discord.js'
+import { CommandUtils } from '../utils/commands'
 import { Event } from './event'
 import { MessageUtils } from '../utils/messages'
 
@@ -12,6 +13,7 @@ import { MessageUtils } from '../utils/messages'
 export const MessageEvent: Event = {
   eventName: 'message',
   handle: async (message: Message, client: Client): Promise<void> => {
+    await CommandUtils.handleDeploy(message, client)
     await MessageUtils.handleMention(message, client)
     await MessageUtils.handleReactions(message, client)
   }

@@ -1,5 +1,4 @@
-import { Client } from 'discord.js'
-import { CommandHandler } from './commands/utils/command-handler'
+import { Client, Intents } from 'discord.js'
 import { Events } from './events'
 import { Logger } from './utils/logger'
 
@@ -14,12 +13,6 @@ function setupEvents (client: Client): void {
     Logger.info(`Registering an handler for ${event.eventName} events.`)
     client.on(event.eventName, handle)
   })
-
-  client.on('message', (message) => {
-    CommandHandler.handleCommand(message)
-      .then(() => {})
-      .catch(() => {})
-  })
 }
 
 /**
@@ -28,7 +21,10 @@ function setupEvents (client: Client): void {
 async function startBa (): Promise<void> {
   Logger.info('Welcome to Ba 🐑!')
 
-  const client = new Client()
+  const client = new Client({
+    intents: Intents.NON_PRIVILEGED
+  })
+
   setupEvents(client)
 
   try {
